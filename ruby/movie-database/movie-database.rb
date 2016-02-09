@@ -2,7 +2,7 @@ movies = {}
 
 while true
   puts "What would you like to do? You can 'add', 'update', 'display', or 'exit'."
-  choice = gets.chomp
+  choice = gets.chomp.downcase
 
   case choice
   when "add"
@@ -22,15 +22,19 @@ while true
     title = gets.chomp.to_sym
     if movies[title].nil?
       puts "That movie is not in the database"
-      else
-          puts "What is the updated rating?"
-          rating = gets.chomp.to_i
-          movies[title] = rating
-      end
+    else
+      puts "What is the updated rating?"
+      rating = gets.chomp.to_i
+      movies[title] = rating
+    end
   
   when "display"
-    movies.each do |movie, rating| 
-      puts "#{movie}: #{rating}"
+    if movies.empty?
+      puts "The database is empty."
+    else
+      movies.each do |movie, rating| 
+        puts "#{movie}: #{rating}"
+      end
     end
   
   when "delete"
@@ -41,8 +45,10 @@ while true
     else
       movies.delete(title)
     end
+  
   when "exit"
     break
+  
   else
     puts "That's not a valid selection."
   end
