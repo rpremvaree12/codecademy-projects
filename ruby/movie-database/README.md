@@ -1,0 +1,1 @@
+A codecademy ruby project that builds a movie and rating database
